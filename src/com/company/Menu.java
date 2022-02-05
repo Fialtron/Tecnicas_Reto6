@@ -289,10 +289,6 @@ public class Menu {
 
     }
 
-
-
-
-
     private boolean validate(String input) {
         return input.matches("[0-9]{1,13}(\\.[0-9]*)?");
     }
