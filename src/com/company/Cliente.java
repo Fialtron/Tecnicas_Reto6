@@ -18,6 +18,9 @@ public class Cliente {
         this.celular = celularCliente;
     }
 
+    public List<Articulo> getArticulos() {
+        return articulos;
+    }
     public int getCedula() {
         return cedula;
     }
@@ -31,8 +34,33 @@ public class Cliente {
         return pais;
     }
 
-    public void setArticulos(Articulo articuloNuevo) {
-        this.articulos.add(articuloNuevo);
+    public void cdArticulo(){
+        articulos.clear();
+    }
+
+    public void cdArticulo(Articulo nuevoArticulo) throws FoundExeption{
+        if (!articulos.contains(nuevoArticulo)){
+            articulos.add(nuevoArticulo);
+        }else{
+            throw new FoundExeption();
+        }
+    }
+
+    public void cdArticulo(int idArticulo) throws NoFoundExeption{
+
+        int articuloSeleccionado = 0;
+
+        for (Articulo articuloActual: articulos) {
+            if (articuloActual.getId() == idArticulo){
+                articuloSeleccionado = articulos.indexOf(articuloActual);
+            }
+        }
+
+        if (articuloSeleccionado == -1) {
+            throw new NoFoundExeption();
+        }else {
+            articulos.remove(articuloSeleccionado);
+        }
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Banco {
         return clientes;
     }
 
-    public void crudCliente(Cliente cliente) throws FoundExeption{
+    public void cdCliente(Cliente cliente) throws FoundExeption{
         if (!clientes.containsKey(cliente.getCedula())){
             clientes.put(cliente.getCedula(),cliente);
         }else{
@@ -27,8 +27,7 @@ public class Banco {
 
     }
 
-    public void crudCliente(int cedulaCliente) throws NoFoundExeption{
-
+    public void cdCliente(int cedulaCliente) throws NoFoundExeption{
         if (clientes.containsKey(cedulaCliente)){
             clientes.remove(cedulaCliente);
         }else{
@@ -37,7 +36,14 @@ public class Banco {
 
     }
 
-    public void crudArticulo(){
-        
+    public Cliente getCliente(int cedulaCliente) throws NoFoundExeption{
+        Cliente clienteSeleccionado = null;
+        if (clientes.containsKey(cedulaCliente)){
+            return clientes.get(cedulaCliente);
+        }else{
+            throw new NoFoundExeption();
+        }
     }
+
+
 }
