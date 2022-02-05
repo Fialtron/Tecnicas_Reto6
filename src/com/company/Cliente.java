@@ -34,6 +34,14 @@ public class Cliente {
         return pais;
     }
 
+    public double calcularVArticulos(){
+        double total = 0;
+        for (Articulo articuloActual: articulos) {
+            total += articuloActual.getValor();
+        }
+        return total;
+    }
+
     public void cdArticulo(){
         articulos.clear();
     }

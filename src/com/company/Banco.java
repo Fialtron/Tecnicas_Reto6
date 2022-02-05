@@ -45,5 +45,13 @@ public class Banco {
         }
     }
 
+    public double calcularVArticulos(){
+        double total = 0;
+        for (Cliente clienteActual: clientes.values()) {
+            total+= clienteActual.calcularVArticulos();
+        }
+        return total;
+    }
+
 
 }

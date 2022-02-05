@@ -50,10 +50,17 @@ public class Menu {
                         quitarArticulos();
                         break;
                     case 6:
-                  
+                        try {
+                            System.out.print(" \nIngrese la cedula del cliente: ");
+                            int cedula = Integer.parseInt(sc.next());
+                            valorArticulos(cedula);
+                        } catch (InputMismatchException e) {
+                            System.out.println(
+                                    "\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
+                        }
                         break;
                     case 7:
-                  
+                        valorArticulos();
                         break;
                     case 8:
                         System.out.print("Hasta luego!");
@@ -102,7 +109,7 @@ public class Menu {
                         pais = sc.next();
                         System.out.print("Ingrese el numero de contacto del cliente  : ");
                         celular = Integer.parseInt(sc.next());
-                        
+
                         this.banco.cdCliente(new Cliente(nombre,cedula,pais,celular));
 
                     } catch (InputMismatchException e) {
@@ -141,7 +148,7 @@ public class Menu {
             System.out.print(" \nIngrese la cedula del cliente que desea mostrar : ");
             cedula = Integer.parseInt(sc.next());
             cliente = banco.getCliente(cedula);
-            System.out.print("\nCedula: "+ cliente.getCedula()+ " Nombre: "+ cliente.getNombre()+ " Pais: "+ cliente.getPais());
+            System.out.print("\nCedula: "+ cliente.getCedula()+ " Nombre: "+ cliente.getNombre()+ " Pais: "+ cliente.getPais()+ " Telefono: "+ cliente.getCelular());
             if (cliente.getArticulos().size() != 0){
 
                 for (Articulo articuloActual: cliente.getArticulos()) {
@@ -257,6 +264,32 @@ public class Menu {
         }
 
     }
+
+    private void valorArticulos(){
+        System.out.print(" \n El valor de los articulos del banco es de: "+ banco.calcularVArticulos());
+    }
+
+    private void valorArticulos(int cedula){
+        try {
+            Cliente cliente = banco.getCliente(cedula);
+            System.out.print("\nCedula: "+ cliente.getCedula()+ " Nombre: "+ cliente.getNombre());
+            if (cliente.getArticulos().size() != 0){
+                System.out.print(" \n El valor de los articulos es de: "+ cliente.calcularVArticulos());
+
+            }else{
+                System.out.print(" \n El cliente no tiene registrado articulos");
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println(
+                    "\n No ha ingresado la informacion correctamente. Por favor intente nuevamente\n\n");
+        } catch (NoFoundExeption e){
+            System.out.println("\n "+ e.getMessage());
+        }
+
+    }
+
+
 
 
 
